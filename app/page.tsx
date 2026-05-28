@@ -38,13 +38,30 @@ function Stars({ count }: { count: number }) {
 }
 
 function SchemaArena({ mission }: { mission: Mission }) {
+  const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+  const nodeCount = mission.schema.tables.length;
+  const minX = nodeCount >= 3 ? 20 : 18;
+  const maxX = nodeCount >= 3 ? 80 : 82;
+  const minY = 22;
+  const maxY = 78;
+
+  const positionedTables = mission.schema.tables.map((table, index) => {
+    const fallbackX =
+      nodeCount <= 1 ? 50 : minX + ((maxX - minX) * index) / Math.max(1, nodeCount - 1);
+    const safeX = clamp(table.x ?? fallbackX, minX, maxX);
+    const safeY = clamp(table.y, minY, maxY);
+    return { ...table, x: safeX, y: safeY };
+  });
+
+  const tableById = new Map(positionedTables.map((table) => [table.id, table]));
+
   return (
     <div className="panel pixel-edge relative h-72 overflow-hidden rounded-2xl p-3">
       <div className="absolute inset-0 sql-grid opacity-30" />
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
         {mission.schema.links.map((link) => {
-          const from = mission.schema.tables.find((table) => table.id === link.from);
-          const to = mission.schema.tables.find((table) => table.id === link.to);
+          const from = tableById.get(link.from);
+          const to = tableById.get(link.to);
 
           if (!from || !to) {
             return null;
@@ -79,10 +96,10 @@ function SchemaArena({ mission }: { mission: Mission }) {
         })}
       </svg>
 
-      {mission.schema.tables.map((table) => (
+      {positionedTables.map((table) => (
         <div
           key={table.id}
-          className="panel-strong absolute w-44 -translate-x-1/2 -translate-y-1/2 rounded-xl p-3"
+          className="panel-strong absolute w-40 -translate-x-1/2 -translate-y-1/2 rounded-xl p-3 md:w-44"
           style={{ left: `${table.x}%`, top: `${table.y}%` }}
         >
           <p className="text-xs font-semibold tracking-wide text-cyan-100">{table.name}</p>

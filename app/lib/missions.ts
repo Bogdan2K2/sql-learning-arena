@@ -499,7 +499,7 @@ export const MISSIONS: Mission[] = [
     },
     schema: {
       tables: [
-        { id: "books", name: "books", columns: ["book_id PK", "book_title"], x: 14, y: 50 },
+        { id: "books", name: "books", columns: ["book_id PK", "book_title"], x: 20, y: 50 },
         {
           id: "author_books",
           name: "author_books",
@@ -507,7 +507,7 @@ export const MISSIONS: Mission[] = [
           x: 50,
           y: 50,
         },
-        { id: "authors", name: "authors", columns: ["author_id PK", "author_name"], x: 84, y: 50 },
+        { id: "authors", name: "authors", columns: ["author_id PK", "author_name"], x: 80, y: 50 },
       ],
       links: [
         { from: "books", to: "author_books", label: "1 -> N" },
