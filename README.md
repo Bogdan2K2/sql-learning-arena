@@ -2,6 +2,12 @@
 
 Interactive SQL game built with Next.js that teaches SQL from beginner to advanced through missions, scoring, hints, quizzes, and live coaching.
 
+## Live App
+
+You can see the app by clicking this link:
+
+[Open SQL Learning Arena on Vercel](https://sql-learning-arena.vercel.app)
+
 ![SQL Learning Arena Screenshot](docs/sql-learning-arena.png)
 
 ## What You Learn
