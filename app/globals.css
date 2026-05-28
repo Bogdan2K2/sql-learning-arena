@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #061124;
+  --foreground: #ecf5ff;
+  --surface-1: rgba(9, 24, 47, 0.82);
+  --surface-2: rgba(14, 36, 68, 0.85);
+  --surface-3: rgba(24, 58, 106, 0.88);
+  --line: rgba(106, 176, 255, 0.42);
+  --accent: #12e6d7;
+  --accent-warm: #ffbc57;
+  --danger: #ff5d7f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-display);
+  --font-mono: var(--font-code);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
+  margin: 0;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-display), sans-serif;
+  background:
+    radial-gradient(circle at 12% 18%, #1c4d8f 0%, rgba(28, 77, 143, 0) 32%),
+    radial-gradient(circle at 88% 4%, #194c57 0%, rgba(25, 76, 87, 0) 26%),
+    radial-gradient(circle at 56% 100%, #5a3f75 0%, rgba(90, 63, 117, 0) 26%),
+    linear-gradient(148deg, #050b19 0%, #0d1a35 52%, #081327 100%);
+  min-height: 100vh;
+}
+
+.sql-grid {
+  background-image:
+    linear-gradient(rgba(157, 210, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(157, 210, 255, 0.09) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  background: linear-gradient(165deg, var(--surface-2), var(--surface-1));
+  box-shadow: 0 18px 50px rgba(2, 12, 30, 0.45);
+  backdrop-filter: blur(14px);
+}
+
+.panel-strong {
+  border: 1px solid rgba(147, 208, 255, 0.54);
+  background: linear-gradient(155deg, var(--surface-3), var(--surface-1));
+  box-shadow: 0 24px 55px rgba(1, 10, 24, 0.6);
+}
+
+.pixel-edge {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.floating {
+  animation: floating 4.2s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.pulse-line {
+  animation: pulseLine 2.4s ease-in-out infinite;
+}
+
+@keyframes pulseLine {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.badge-pop {
+  animation: badgePop 280ms ease-out;
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
