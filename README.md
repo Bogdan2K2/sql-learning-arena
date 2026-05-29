@@ -1,4 +1,4 @@
-# SQL Learning Arena
+﻿# SQL Learning Arena
 
 Interactive SQL game built with Next.js that teaches SQL from beginner to advanced through missions, scoring, hints, quizzes, and live coaching.
 
@@ -16,7 +16,7 @@ You can see the app by clicking this link:
 - Analytics SQL: window functions, CTEs, conditional aggregation
 - Object SQL: PostgreSQL JSON/JSONB querying
 - Spatial SQL: PostGIS distance and intersection patterns
-- SGBD differences: dialect-specific syntax challenges
+- RDBMS differences: dialect-specific syntax challenges
 
 ## Main Features
 
@@ -26,6 +26,11 @@ You can see the app by clicking this link:
 - Rule-based SQL validation + mastery percentage
 - AI-style SQL explanation and anti-pattern alerts
 - In-mission quiz for theory reinforcement
+
+## Prerequisites
+
+- Node.js 20+
+- npm 10+
 
 ## Quick Start
 
@@ -41,6 +46,12 @@ Open `http://localhost:3000`.
 ```bash
 npm run lint
 npm run build
+```
+
+## Production Run
+
+```bash
+npm run start
 ```
 
 ## Full Guide
